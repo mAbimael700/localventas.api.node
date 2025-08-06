@@ -1,0 +1,123 @@
+    
+    body {
+        margin: 0;
+        background: linear-gradient(var(--red-background), 70%, var(--red-shadow-1));
+        color: var(--color-light);
+        background-attachment: fixed;
+      }
+
+    .container{
+        width: 100%;
+        margin-top: 6.5rem;
+        position: relative;
+        z-index: -1;
+    }
+
+    .container h1{
+        font-family: 'Gill Sans MT';
+        text-align: center;
+        font-size: 6rem;
+        font-weight: 600;
+        /* filter: drop-shadow(5px 5px 0 rgb(226, 42, 18)) */
+        
+    }
+
+    .container .element:last-child{
+        margin-bottom: 0;
+    }
+
+    .element{
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .start{
+        box-shadow: 0 0.4rem 0.5rem var(--red-shadow-2);
+    }
+
+    .start:hover{
+        box-shadow: none;
+    }
+    
+    .product{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .product img{
+        -webkit-filter:drop-shadow(0 0.4rem 0.6rem var(--red-shadow-3));
+        filter: drop-shadow(0 0.4rem 0.6rem var(--red-shadow-3));
+        pointer-events: none;
+    }
+    
+    /* ============================ MEDIA QUERYS (Small tablets and smartphones) ============================ */
+            
+
+
+    @media (min-width:320px)  {
+        /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */         
+            .title{
+                font-size: 3rem;
+            }
+
+            .container h1{
+                font-size: 8rem;
+            }
+
+            .element{
+                margin-bottom: 4rem;
+            }
+
+            .btn-high-red{
+                font-size: 1.8rem;
+            }
+
+            .start{
+                font-size: 2.5rem;
+                padding: 1.7rem;
+                border-radius: 3rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .product img{
+                
+                width:90%;
+            }
+            
+        }
+
+    @media (min-width:1025px)  {
+
+        .title{
+            font-size: 1.8rem;
+        }
+
+        .container h1{
+            font-size: 6rem;
+        }
+            
+        .element{
+            margin-bottom: 3rem;
+        }
+
+        .btn-high-red{
+            font-size: 1rem;
+        }
+
+        .start{
+            font-size: 1.2rem;
+            padding: 0.9rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .product img{
+            width: 70%;
+        }
+
+    }

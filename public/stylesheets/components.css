@@ -1,0 +1,143 @@
+.title{
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+nav{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin: 1rem;
+    
+}
+
+nav .col ul{
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav .col .title{
+  font-size: 1.8rem;
+  font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav .col ul li a{
+  font-size: 0.95rem;
+}      
+
+
+a {
+    color: var(--color-light);
+    font: 0.88rem 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+
+  
+button{
+  background: transparent;
+}
+
+  .btn{
+    background-color: transparent;
+    transition: all 100ms ease;
+  }
+  
+  .btn:hover{
+    transition: all 100ms ease;
+    transform: scale(1.1);
+  }
+
+  .btn-circled{
+    border: solid var(--color-light) 0.095rem;
+    border-radius: var(--border-radius-3);
+    padding: 0.5rem;
+  }
+  
+  .btn-high-red{
+    font-size: 1rem;
+    border: solid var(--red-highlight) 0.095rem;
+    background: var(--red-highlight);
+    padding: 0.9rem;
+    border-radius: var(--border-radius-3);
+    box-shadow: 0 0.4rem 0.5rem #6e1717;
+  }
+  
+  .btn-circled:hover{
+    background: var(--red-highlight);
+    transition: all 300ms ease;  
+  }
+  
+  .btn-high-red:hover{
+    background: var(--color-danger);
+    color: var(--color-background);
+    transition: all 300ms ease;
+    box-shadow: none;
+  }
+
+  footer{
+    background: var(--darkest);
+    color: var(--color-light);
+    padding: 1rem 2rem 2rem 2rem;
+  }
+
+  input[type=text], input[type=email], input[type=password]{
+    font: 1rem 'Poppins', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    padding: 0.5rem;
+    background: none;
+    border: 0.08rem solid var(--dark);
+    border-radius: var(--border-radius-1);
+    stroke-linejoin: round;
+  }
+
+  input[type=checkbox]{
+    cursor: pointer;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    width: 1rem;
+    height: 1rem;
+    appearance: none;
+    border: 1px solid var(--dark);
+    border-radius: 0.1rem;
+      
+  
+  }
+
+  input[type=checkbox]:checked {
+    background-color: var(--red-highlight);
+    border: none;
+  }
+
+  input[type=checkbox]:focus {
+    border-color: rgb(80, 67, 250);
+  } 
+
+  input[type=checkbox]:disabled {
+    background-color: rgb(198, 198, 198);
+    background-image: none;
+  } 
+
+  span{
+    font-family: 'Poppins';
+  }
+
+  .btn-primary{
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 0 1.5625rem;
+    border: 0.08rem solid var(--dark);
+    border-radius: var(--border-radius-1);
+    color: var(--darker);
+    letter-spacing: 0.125rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-family: 'Poppins', Helvetica;
+
+    
+  }
+  
+  .btn-primary:hover{
+      background: var(--color-primary);
+      transition: all ease-in-out 200ms;
+      border-color: transparent;
+      color: var(--color-background);
+    }

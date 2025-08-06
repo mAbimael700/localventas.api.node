@@ -1,0 +1,38 @@
+body {
+    width: 100vw;
+    color: var(--darker);
+  }
+
+  a{
+    color: var(--dark);
+  }
+
+  a:hover{
+    color: var(--red-highlight);
+    transition: all 300ms ease;  
+  }
+
+  .btn-circled{
+    border-color: var(--dark);
+  }
+
+  .btn-circled:hover{
+    color: var(--color-light);
+    border-color: var(--red-highlight);
+  }
+
+  header h1 {
+    font-size: 3.2rem;
+  }
+
+  .container {
+    padding: 0.9rem 0.8rem 0 0.5rem;
+  }
+
+  hr{
+    width: 100%;
+    height: 0.05rem;
+    background-color: var(--hr-dark);
+    border-radius: var(--border-radius-3);
+    margin: 0.7rem 0 0 0.5rem;
+  }

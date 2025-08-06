@@ -1,0 +1,49 @@
+extends ../layouts/layout
+
+block styles 
+  link(rel='stylesheet', href='/stylesheets/register.css')
+
+
+block content
+    
+    .container
+
+
+        form(action="", method="post") 
+
+            .step.step-1 
+                h1 Hola, ¿Con quién tengo el gusto? 
+
+                .element 
+                    input(type="text" name="nombre" placeholder="Nombre")
+                .element
+                    input(type="text", name="paterno" placeholder="Paterno")
+                    input(type="text", name="materno" placeholder="Materno")
+            
+                button.btn-primary Siguiente 
+            
+            .step.step-2
+                h1 Crear cuenta como 
+                    span.danger emprendedor
+                
+                .element
+                    input(type="email" name="email" placeholder="Correo electrónico")
+
+                .element 
+                    input(type="text" name="usuario" placeholder="Usuario")
+
+                .element 
+                    input(type="password" name="contrasena" placeholder="Contraseña")
+
+                .element 
+                    input(type="checkbox" name="")
+                    span Estoy de acuerdo con los 
+                        a(href="") Términos y condiciones
+                
+                .element
+                    button.btn-primary Registrarme
+                        
+                
+
+
+    
