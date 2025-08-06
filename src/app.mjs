@@ -86,4 +86,13 @@ app.use(function (err, req, res, next) {
   res.json(jsonResponse(404, { message: err.message }));
 });
 
+// En tu archivo de rutas principal o app.js
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
 export default app;

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: node-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"  # Ajusta el puerto según tu app
+    environment:
+      - NODE_ENV=production
+      # Firebase Admin SDK
+      - FB_PROJECT_ID=${FB_PROJECT_ID}
+      - FB_PRIVATE_KEY_ID=${FB_PRIVATE_KEY_ID}
+      - FB_PRIVATE_KEY=${FB_PRIVATE_KEY}
+      - FB_CLIENT_EMAIL=${FB_CLIENT_EMAIL}
+      - FB_CLIENT_ID=${FB_CLIENT_ID}
+      - FB_CLIENT_CERT_URL=${FB_CLIENT_CERT_URL}
+      - FB_DATABASE_URL=${FB_DATABASE_URL}
+      - FB_STORAGE_BUCKET=${FB_STORAGE_BUCKET}
+      # Otras variables de tu app
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+    volumes:
+      # Para persistir uploads si los tienes
+      - ./uploads:/usr/src/app/uploads
+      # Para logs
+      - ./logs:/usr/src/app/logs
+    networks:
+      - app-network
+    # Healthcheck opcional
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  logs:

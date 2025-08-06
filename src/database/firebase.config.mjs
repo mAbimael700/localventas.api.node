@@ -1,18 +1,23 @@
-// Import the functions you need from the SDKs you need
-import { applicationDefault, initializeApp } from "firebase-admin/app";
+import { cert, initializeApp } from "firebase-admin/app";
 import { getStorage } from "firebase-admin/storage";
-import { getApp } from "firebase-admin/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const serviceAccount = {
+  type: "service_account",
+  project_id: process.env.FB_PROJECT_ID,
+  private_key_id: process.env.FB_PRIVATE_KEY_ID,
+  private_key: process.env.FB_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  client_email: process.env.FB_CLIENT_EMAIL,
+  client_id: process.env.FB_CLIENT_ID,
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url: process.env.FB_CLIENT_CERT_URL
+};
 
-// Your web app's Firebase configuration
-// Initialize Firebase
 export const app = initializeApp({
-  credential: applicationDefault(),
+  credential: cert(serviceAccount),
   databaseURL: process.env.FB_DATABASE_URL,
   storageBucket: process.env.FB_STORAGE_BUCKET,
-  
 });
 
 export const storage = getStorage(app);
