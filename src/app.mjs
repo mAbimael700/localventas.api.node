@@ -36,7 +36,7 @@ app.use(
     origin: (origin, callback) => {
       const ACCEPTED_ORIGINS = [
         "http://localhost:5173",
-        process.env.CLIENT_URL,
+        process.env.CLIENT_DOMAIN,
       ];
 
       if (ACCEPTED_ORIGINS.includes(origin)) {
