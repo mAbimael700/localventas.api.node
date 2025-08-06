@@ -36,9 +36,6 @@ app.use(
     origin: (origin, callback) => {
       const ACCEPTED_ORIGINS = [
         "http://localhost:5173",
-        "http://192.168.56.1:5173",
-        "http://192.168.1.245:5173",
-        "http://192.168.137.1:5173",
         process.env.CLIENT_URL,
       ];
 
@@ -54,6 +51,15 @@ app.use(
 );
 
 app.use(closePoolMiddleware);
+
+// En tu archivo de rutas principal o app.js
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
 
 app.use("/api/productos", productosRouter);
 app.use("/api/tiendas", tiendasRouter);
@@ -86,13 +92,6 @@ app.use(function (err, req, res, next) {
   res.json(jsonResponse(404, { message: err.message }));
 });
 
-// En tu archivo de rutas principal o app.js
-app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'ok', 
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
-});
+
 
 export default app;
