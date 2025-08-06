@@ -25,7 +25,8 @@ FROM node:18-alpine AS production
 # Instalar dependencias runtime necesarias
 RUN apk add --no-cache \
     libc6-compat \
-    dumb-init
+    dumb-init \
+    wget
 
 WORKDIR /usr/src/app
 
@@ -52,9 +53,9 @@ EXPOSE 3000
 # Variables de entorno por defecto
 ENV NODE_ENV=production
 
-# Healthcheck para Coolify
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })" || exit 1
+# Healthcheck para Coolify - usar wget para mejor compatibilidad
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
 
 # Usar dumb-init como PID 1 para mejor manejo de señales
 ENTRYPOINT ["dumb-init", "--"]
