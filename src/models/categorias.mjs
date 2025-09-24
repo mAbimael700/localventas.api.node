@@ -9,12 +9,12 @@ export class CategoriasModel {
       const buscarRama = async (idCategoria) => {
         const categoria = await pool.query(
           `SELECT 
-                C.CVE_CATEGORIA,
-                C.NOMBRE,
-                C.CVE_CATEGORIA_PADRE,
-                C.ACTIVO
-                FROM CATEGORIAS AS c
-                WHERE c.CVE_CATEGORIA = ?`,
+                c.cve_categoria,
+                c.nombre,
+                c.cve_categoria_padre,
+                c.activo
+                FROM categorias AS c
+                WHERE c.cve_categorias = ?`,
           [idCategoria]
         );
 
@@ -23,24 +23,24 @@ export class CategoriasModel {
           return null;
         }
 
-        const { CVE_CATEGORIA, NOMBRE, CVE_CATEGORIA_PADRE, ACTIVO } =
+        const {  cve_categoria, nombre, cve_categoria_padre,  activo } =
           categoria[0];
 
-        if (CVE_CATEGORIA_PADRE === null || CVE_CATEGORIA_PADRE === -1) {
+        if (cve_categoria_padre === null || cve_categoria_padre === -1) {
           // Si es la categoría raíz, no hay más padres, retornar la categoría actual
           return {
-            cve_categoria: CVE_CATEGORIA,
-            nombre: NOMBRE,
-            activo: ACTIVO,
+            cve_categoria,
+             nombre,
+             activo,
           };
         } else {
           // Si no es la categoría raíz, buscar el padre recursivamente
-          const padre = await buscarRama(CVE_CATEGORIA_PADRE);
+          const padre = await buscarRama(cve_categoria_padre);
           return {
-            cve_categoria: CVE_CATEGORIA,
-            nombre: NOMBRE,
-            parent: padre,
-            activo: ACTIVO,
+             cve_categoria,
+             nombre,
+             padre,
+             activo,
           };
         }
       };
@@ -57,13 +57,13 @@ export class CategoriasModel {
     try {
       const rows = await pool.query(
         `SELECT 
-        C.CVE_CATEGORIA,
-        C.NOMBRE,
-        C.ACTIVO
-          FROM CATEGORIAS AS c
-            INNER JOIN CATEGORIAS_TIENDA AS ct ON ct.CVE_CATEGORIA = c.CVE_CATEGORIA
-            INNER JOIN TIENDAS AS t ON t.CVE_TIENDA = ct.CVE_TIENDA
-        WHERE c.CVE_CATEGORIA_PADRE = ? AND t.CVE_TIENDA = ?`,
+        c.cve_categoria,
+        c.nombre,
+        c.activo
+          FROM categorias AS c
+            INNER JOIN categorias_tienda AS ct ON ct.cve_categoria = c.cve_categoria
+            INNER JOIN tiendas AS t ON t.cve_tienda = ct.cve_tienda
+        WHERE c.cve_categoria_padre = ? AND t.cve_tienda = ?`,
         [padre, parseInt(tiendaId)]
       );
 
@@ -71,17 +71,17 @@ export class CategoriasModel {
       const categorias = [];
 
       for (const row of rows) {
-        const { CVE_CATEGORIA, NOMBRE, ACTIVO } = row;
+        const {  cve_categoria,  nombre,  activo } = row;
         const children = await this.obtenerCategorias({
-          padre: CVE_CATEGORIA,
+          padre: cve_categoria,
           tiendaId,
         });
 
         categorias.push({
-          cve_categoria: CVE_CATEGORIA,
-          nombre: NOMBRE,
+          cve_categoria,
+          nombre,
           children: children.length > 0 ? children : undefined,
-          activo: ACTIVO,
+          activo,
         });
       }
 
